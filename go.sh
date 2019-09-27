@@ -4,4 +4,4 @@ set -euo pipefail
 
 echo "here we are in the go.sh"
 
-php rss.php
+php jokes.php

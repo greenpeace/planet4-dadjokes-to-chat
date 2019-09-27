@@ -2,7 +2,7 @@ SHELL := /bin/bash
 
 BUILD_NAMESPACE ?= greenpeaceinternational
 
-DOCKER_IMAGE_NAME = planet4-vulnerable-plugins-rss
+DOCKER_IMAGE_NAME = planet4-dadjokes-to-chat
 
 SED_MATCH ?= [^a-zA-Z0-9._-]
 

@@ -26,7 +26,7 @@ jobs:
       - run: docker-login.sh
       - run: make build-branch push-branch
 
-  check-rss:
+  send-jokes:
     docker:
       - image: greenpeaceinternational/planet4-dadjokes-to-chat:master
     steps:
@@ -41,7 +41,7 @@ workflows:
           filters:
             branches:
               ignore: develop
-      - check-rss:
+      - send-jokes:
           context: org-global
           requires:
             - build-push-branch
@@ -56,7 +56,7 @@ workflows:
             tags:
               only: /^v.*/
 
-  check-rss:
+  send-jokes:
     triggers:
       - schedule:
           cron: "01 * * * *"
@@ -65,5 +65,5 @@ workflows:
               only:
                 - master
     jobs:
-      - check-rss:
+      - send-jokes:
           context: org-global
