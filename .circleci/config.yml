@@ -59,7 +59,7 @@ workflows:
   send-jokes:
     triggers:
       - schedule:
-          cron: "01 * * * *"
+          cron: "22 * * * *"
           filters:
             branches:
               only:
