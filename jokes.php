@@ -17,7 +17,6 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
 $text = curl_exec ($ch);
-$text .= "\n Brought to you by the KonstantinosBot. If you want to stop it, learn how! \n";
 
 // Send the data to google hangout chat
 $post_data = array(
