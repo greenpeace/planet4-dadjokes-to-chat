@@ -1,4 +1,6 @@
 ---
+version: 2.1
+
 defaults: &defaults
   environment:
     GOOGLE_PROJECT_ID: planet-4-151612
@@ -6,7 +8,8 @@ defaults: &defaults
     - image: greenpeaceinternational/circleci-base:latest
   working_directory: /home/circleci/app
 
-version: 2
+orbs:
+  slack: circleci/slack@3.4.2
 
 jobs:
   build-push-tag:
@@ -29,18 +32,26 @@ jobs:
   send-jokes:
     docker:
       - image: greenpeaceinternational/planet4-dadjokes-to-chat:master
+    working_directory: /app
     steps:
-      - run: php /app/jokes.php
+      - run:
+          name: Get the joke
+          command: |
+            joke="$(./bin/joke.sh)"
+            echo "export JOKE_MSG='${joke}'" >> $BASH_ENV
+      - slack/notify:
+          channel: C014UMRC4AJ
+          color: '#78c043'
+          message: "${JOKE_MSG}"
+          include_job_number_field: false
+          include_project_field: false
+          include_visit_job_action: false
 
 workflows:
-  version: 2
   branch:
     jobs:
       - build-push-branch:
           context: org-global
-          filters:
-            branches:
-              ignore: develop
       - send-jokes:
           context: org-global
           requires:
