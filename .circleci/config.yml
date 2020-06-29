@@ -52,10 +52,6 @@ workflows:
     jobs:
       - build-push-branch:
           context: org-global
-      - send-jokes:
-          context: org-global
-          requires:
-            - build-push-branch
 
   tag:
     jobs:
@@ -70,7 +66,7 @@ workflows:
   send-jokes:
     triggers:
       - schedule:
-          cron: "22 01 * * *"
+          cron: "22 01 * * 1,2,3,4,5"
           filters:
             branches:
               only:
