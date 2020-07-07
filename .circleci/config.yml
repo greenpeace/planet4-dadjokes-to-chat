@@ -39,7 +39,7 @@ jobs:
           command: |
             joke="$(./bin/joke.sh)"
             echo "export JOKE_MSG='${joke}'" >> $BASH_ENV
-            echo "$joke"
+            echo "${JOKE_MSG}"
       - slack/notify:
           channel: C014UMRC4AJ
           color: '#78c043'
