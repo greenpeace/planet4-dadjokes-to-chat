@@ -31,7 +31,7 @@ jobs:
 
   send-jokes:
     docker:
-      - image: greenpeaceinternational/planet4-dadjokes-to-chat:master
+      - image: greenpeaceinternational/planet4-dadjokes-to-chat:main
     working_directory: /app
     steps:
       - run:
@@ -67,11 +67,11 @@ workflows:
   send-jokes:
     triggers:
       - schedule:
-          cron: "22 01 * * 1,2,3,4,5"
+          cron: "22 01 * * 4"
           filters:
             branches:
               only:
-                - master
+                - main
     jobs:
       - send-jokes:
           context: org-global
